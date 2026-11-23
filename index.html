@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b6e75">
+  <title>Sơ đồ & chỉ dẫn bệnh viện</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Trang chủ">
+      <span class="brand-mark" aria-hidden="true">✚</span>
+      <span>
+        <strong>BỆNH VIỆN THÀNH CÔNG</strong>
+        <small>Sơ đồ & chỉ dẫn</small>
+      </span>
+    </a>
+    <div class="emergency"><span>Hỗ trợ khẩn cấp</span><strong>115</strong></div>
+  </header>
+
+  <main class="app">
+    <aside class="panel">
+      <div class="panel-heading">
+        <span class="step">1</span>
+        <div><small>TÌM ĐƯỜNG</small><h1>Chọn điểm đến</h1></div>
+      </div>
+
+      <label class="search-box" for="room-search">
+        <span aria-hidden="true">⌕</span>
+        <input id="room-search" type="search" placeholder="Tên phòng hoặc chuyên khoa..." autocomplete="off">
+        <button id="clear-search" type="button" aria-label="Xóa tìm kiếm" hidden>×</button>
+      </label>
+
+      <div id="suggestions" class="suggestions" role="listbox" aria-label="Danh sách phòng"></div>
+
+      <div class="destination-card" id="destination-card" hidden>
+        <span class="destination-icon">●</span>
+        <div><small>Điểm đến</small><strong id="destination-name"></strong></div>
+        <button id="clear-destination" type="button" aria-label="Bỏ điểm đến">×</button>
+      </div>
+
+      <div class="floor-picker">
+        <span class="picker-label">CHỌN TẦNG</span>
+        <div id="floor-buttons" class="floor-buttons"></div>
+      </div>
+
+      <button id="start-route" class="route-button" type="button" disabled>
+        Bắt đầu chỉ đường <span>→</span>
+      </button>
+
+      <div id="route-info" class="route-info" aria-live="polite"></div>
+    </aside>
+
+    <section class="map-section" aria-label="Sơ đồ bệnh viện">
+      <div class="map-toolbar">
+        <div>
+          <span class="map-label">SƠ ĐỒ BỆNH VIỆN</span>
+          <h2 id="floor-title">Tầng 1</h2>
+        </div>
+        <div class="legend">
+          <span><i class="dot lobby"></i> Sảnh chính</span>
+          <span><i class="dot destination"></i> Điểm đến</span>
+        </div>
+      </div>
+      <div class="map-wrap" id="map-wrap">
+        <svg id="map" viewBox="0 0 760 510" role="img" aria-label="Sơ đồ tầng bệnh viện">
+          <g id="map-content"></g>
+        </svg>
+        <div class="you-are-here" id="you-are-here"><span></span>Vị trí bắt đầu</div>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

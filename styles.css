@@ -1,0 +1,119 @@
+:root {
+  --teal: #08757c;
+  --teal-dark: #075860;
+  --mint: #dcefee;
+  --orange: #f18b43;
+  --ink: #18343a;
+  --muted: #71868a;
+  --line: #d8e4e4;
+  --paper: #f6faf9;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+  color: var(--ink);
+  background: #edf4f3;
+}
+
+button, input { font: inherit; }
+button { cursor: pointer; }
+
+.topbar {
+  height: 78px;
+  padding: 0 38px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  border-bottom: 1px solid #e1eaea;
+}
+
+.brand { display: flex; align-items: center; gap: 12px; color: var(--ink); text-decoration: none; }
+.brand-mark {
+  display: grid; place-items: center; width: 46px; height: 46px;
+  border-radius: 50%; background: var(--teal); color: white; font-size: 24px;
+}
+.brand strong { display: block; font-size: 15px; letter-spacing: .8px; }
+.brand small { display: block; margin-top: 3px; color: var(--muted); }
+.emergency { display: flex; align-items: center; gap: 12px; }
+.emergency span { color: var(--muted); font-size: 13px; }
+.emergency strong { display: grid; place-items: center; width: 58px; height: 58px; border-radius: 50%; background: #e36c45; color: white; }
+
+.app { display: grid; grid-template-columns: 330px minmax(0, 1fr); min-height: calc(100vh - 78px); }
+.panel { padding: 28px 30px; background: white; border-right: 1px solid var(--line); }
+.panel-heading { display: flex; align-items: center; gap: 12px; margin-bottom: 22px; }
+.panel-heading .step { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--teal); color: white; }
+.panel-heading small { color: var(--orange); letter-spacing: 1.4px; font-size: 11px; font-weight: 800; }
+.panel-heading h1 { margin: 2px 0 0; font-size: 20px; }
+
+.search-box { height: 48px; display: flex; align-items: center; gap: 8px; padding: 0 12px; border: 1.5px solid #bcd0d0; border-radius: 8px; }
+.search-box:focus-within { border-color: var(--teal); box-shadow: 0 0 0 3px #08757c16; }
+.search-box > span { color: var(--teal); font-size: 24px; line-height: 1; }
+.search-box input { width: 100%; border: 0; outline: 0; color: var(--ink); }
+.search-box button { border: 0; background: transparent; color: var(--muted); font-size: 20px; }
+
+.suggestions { max-height: 240px; overflow-y: auto; margin-top: 7px; border-radius: 8px; }
+.suggestion { width: 100%; padding: 11px 12px; border: 0; border-bottom: 1px solid #edf2f2; background: white; text-align: left; }
+.suggestion:hover, .suggestion.active { background: var(--paper); color: var(--teal-dark); }
+.suggestion strong, .suggestion small { display: block; }
+.suggestion small { margin-top: 3px; color: var(--muted); }
+
+.destination-card { display: grid; grid-template-columns: 28px 1fr 28px; align-items: center; margin-top: 12px; padding: 10px 8px; border: 1px solid #bad4d2; border-radius: 8px; background: #eff8f7; }
+.destination-card[hidden] { display: none; }
+.destination-icon { color: var(--orange); }
+.destination-card small, .destination-card strong { display: block; }
+.destination-card small { color: var(--muted); }
+.destination-card button { border: 0; background: transparent; color: var(--muted); }
+
+.floor-picker { margin-top: 24px; }
+.picker-label { display: block; margin-bottom: 8px; color: var(--muted); font-size: 11px; font-weight: 800; letter-spacing: 1.2px; }
+.floor-buttons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.floor-button { height: 48px; border: 1px solid var(--line); border-radius: 8px; background: white; color: var(--ink); }
+.floor-button.active { border-color: var(--teal); background: var(--teal); color: white; }
+
+.route-button { width: 100%; height: 50px; margin-top: 18px; border: 0; border-radius: 8px; background: var(--orange); color: white; font-weight: 800; }
+.route-button span { float: right; margin-right: 12px; }
+.route-button:disabled { cursor: not-allowed; background: #cad7d6; }
+.route-info { margin-top: 12px; padding: 12px; border-radius: 8px; background: #edf7f6; font-size: 13px; line-height: 1.55; }
+.route-info:empty { display: none; }
+
+.map-section { min-width: 0; padding: 20px 28px 28px; }
+.map-toolbar { height: 58px; display: flex; align-items: flex-start; justify-content: space-between; }
+.map-label { color: var(--orange); font-size: 10px; font-weight: 800; letter-spacing: 1.4px; }
+.map-toolbar h2 { margin: 3px 0 0; font-size: 22px; }
+.legend { display: flex; gap: 18px; padding-top: 18px; color: var(--muted); font-size: 12px; }
+.dot { display: inline-block; width: 9px; height: 9px; margin-right: 5px; border-radius: 50%; }
+.dot.lobby { background: var(--teal); }
+.dot.destination { background: var(--orange); }
+
+.map-wrap { position: relative; height: calc(100vh - 184px); min-height: 470px; overflow: hidden; border: 1px solid var(--line); border-radius: 12px; background: #fbfdfd; }
+#map { width: 100%; height: 100%; }
+.room { fill: #eef5f4; stroke: #9fb9b7; stroke-width: 1.5; }
+.room.selected { fill: #fff1e6; stroke: var(--orange); stroke-width: 3; }
+.room-text { fill: var(--ink); font-size: 13px; font-weight: 700; text-anchor: middle; }
+.room-subtext { fill: var(--muted); font-size: 10px; text-anchor: middle; }
+.corridor { fill: #dcebe9; stroke: #b3caca; stroke-width: 1; }
+.wall { stroke: #91aaa8; stroke-width: 2; fill: none; }
+.route-line { fill: none; stroke: var(--orange); stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 12 9; animation: dash .7s linear infinite; }
+.node { fill: var(--teal); stroke: white; stroke-width: 3; }
+.start-node { fill: var(--teal); }
+.destination-node { fill: var(--orange); }
+@keyframes dash { to { stroke-dashoffset: -21; } }
+
+.you-are-here { position: absolute; left: 50%; bottom: 42px; transform: translateX(-50%); display: flex; align-items: center; gap: 7px; padding: 8px 12px; border: 1px solid #b9cecc; border-radius: 20px; background: white; box-shadow: 0 4px 16px #1c55551a; font-size: 12px; }
+.you-are-here span { width: 10px; height: 10px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 0 4px #08757c25; }
+
+@media (max-width: 850px) {
+  .topbar { height: 68px; padding: 0 16px; }
+  .brand strong { font-size: 12px; }
+  .emergency span { display: none; }
+  .app { display: block; }
+  .panel { border-right: 0; border-bottom: 1px solid var(--line); }
+  .map-section { padding: 16px; }
+  .map-wrap { height: 540px; min-height: 380px; }
+  .legend { display: none; }
+}
